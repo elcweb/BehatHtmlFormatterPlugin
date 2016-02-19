@@ -8,9 +8,7 @@ namespace emuse\BehatHTMLFormatter\Renderer;
 use Twig_Environment;
 use Twig_Loader_Filesystem;
 
-class TwigRenderer implements RendererInterface {
-
-class TwigRenderer
+class TwigRenderer implements RendererInterface
 {
     private $twig_template_name = 'index.html.twig';
     private $twig_template_path = __DIR__. '/../../templates';
