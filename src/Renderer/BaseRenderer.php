@@ -237,4 +237,12 @@ class BaseRenderer {
 
         return $print;
     }
+
+    /**
+     * @param array $renderOptions
+     * @return void
+     */
+    public function setRenderOptions($renderOptions)
+    {
+    }
 }
