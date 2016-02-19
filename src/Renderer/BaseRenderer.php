@@ -41,7 +41,9 @@ class BaseRenderer {
 
             $rendererInstance = new $className() ;
             if ($render_options) {
-                $rendererInstance->setRenderOptions($render_options);
+                if (method_exists($rendererInstance, 'setRenderOptions')) {
+                    $rendererInstance->setRenderOptions($render_options);
+                }
             }
 
             $this->rendererList[$renderer] = $rendererInstance;
@@ -236,13 +238,5 @@ class BaseRenderer {
         }
 
         return $print;
-    }
-
-    /**
-     * @param array $renderOptions
-     * @return void
-     */
-    public function setRenderOptions($renderOptions)
-    {
     }
 }
