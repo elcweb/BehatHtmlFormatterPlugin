@@ -38,7 +38,13 @@ class BaseRenderer {
             } else {
                 $className = $renderer;
             }
-            $this->rendererList[ $renderer ] = new $className();
+
+            $rendererInstance = new $className() ;
+            if ($render_options) {
+                $rendererInstance->setRenderOptions($render_options);
+            }
+
+            $this->rendererList[$renderer] = $rendererInstance;
         }
     }
 
