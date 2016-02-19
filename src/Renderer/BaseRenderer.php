@@ -23,7 +23,7 @@ class BaseRenderer {
      * @param string : list of the renderer
      * @param string : base_path
      */
-    public function __construct($renderer, $base_path)
+    public function __construct($renderer, $render_options)
     {
         $rendererList = explode(',', $renderer);
 

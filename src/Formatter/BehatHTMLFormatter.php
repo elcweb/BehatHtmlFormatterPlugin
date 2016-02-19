@@ -158,7 +158,21 @@ class BehatHTMLFormatter implements Formatter {
      */
     private $skippedSteps;
 
-    //</editor-fold>
+  //<editor-fold desc="Formatter functions">
+  /**
+   * @param $name
+   * @param $base_path
+   */
+  function __construct($name, $renderer, $render_options, $filename, $print_args, $print_outp, $loop_break, $base_path) {
+    $this->name = $name;
+    $this->print_args = $print_args;
+    $this->print_outp = $print_outp;
+    $this->loop_break = $loop_break;
+    $this->renderer = new BaseRenderer($renderer, $render_options);
+    $this->printer = new FileOutputPrinter($this->renderer->getNameList(), $filename, $base_path);
+    $this->timer = new Timer();
+    $this->memory = new Memory();
+  }
 
     //<editor-fold desc="Formatter functions">
     /**

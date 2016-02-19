@@ -10,6 +10,18 @@ use Twig_Loader_Filesystem;
 
 class TwigRenderer implements RendererInterface {
 
+class TwigRenderer
+{
+    private $twig_template_name = 'index.html.twig';
+    private $twig_template_path = __DIR__. '/../../templates';
+    
+    public function setRenderOptions(array $render_options)
+    {
+        foreach ($render_options as $render_option_name => $render_option_value) {
+            $this->$render_option_name = $render_option_value;
+        }
+    }
+
     /**
      * Renders before an exercice.
      * @param object : BehatHTMLFormatter object
@@ -28,10 +40,9 @@ class TwigRenderer implements RendererInterface {
     public function renderAfterExercise($obj)
     {
 
-        $templatePath = dirname(__FILE__).'/../../templates';
-        $loader = new Twig_Loader_Filesystem($templatePath);
+        $loader = new Twig_Loader_Filesystem($this->twig_template_path);
         $twig = new Twig_Environment($loader, array());
-        $print = $twig->render('index.html.twig',
+        $print = $twig->render($this->twig_template_name,
             array(
                 'suites'          => $obj->getSuites(),
                 'failedScenarios' => $obj->getFailedScenarios(),
